@@ -96,13 +96,12 @@ Template.profileDetails.helpers({
         var username = Router.current().params.username;
         var user = Meteor.users.findOne({username:username});
         var edge = UserEdges.find({$or: [{requester:  Meteor.userId()},{requestee:  Meteor.userId()}], status:"accepted"}).fetch();
-        console.log("user", user);
-        console.log("edge",edge);
+
         if (edge[0].requestee === user._id) {
 
           return true;
         } else {
-          console.log("adios");
+
           return false;
         }
     }
@@ -110,7 +109,7 @@ Template.profileDetails.helpers({
 
 
 Template.profileDetails.events({
-    
+
     'click .add-friend':function(){
         var profileUser = Router.current().params.username;
         var requester = Meteor.user();
